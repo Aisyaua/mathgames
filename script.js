@@ -1,70 +1,19 @@
-// Mobile Menu Toggle
-const menuToggle = document.getElementById('menuToggle');
-const mainMenu = document.getElementById('mainMenu');
-
-menuToggle.addEventListener('click', () => {
-    mainMenu.classList.toggle('show');
-    const icon = menuToggle.querySelector('i');
-    icon.classList.toggle('fa-bars');
-    icon.classList.toggle('fa-times');
-});
-
-// Smooth Scrolling for Anchor Links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        
-        window.scrollTo({
-            top: targetElement.offsetTop - 80,
-            behavior: 'smooth'
-        });
-        
-        // Close mobile menu if open
-        if (mainMenu.classList.contains('show')) {
-            mainMenu.classList.remove('show');
-            const icon = menuToggle.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
+/**
+ * Memperbarui tampilan koleksi hewan.
+ */
+function updateCollectionDisplay() {
+    animalCollectionDiv.innerHTML = ''; // Hapus tampilan lama
+    animalList.forEach(animal => {
+        const animalElement = document.createElement('div');
+        animalElement.className = 'text-center';
+        // Gunakan tag <img> jika hewan sudah unlocked
+        const imageHtml = animal.unlocked ? 
+            `<img src="${animal.imageUrl}" alt="${animal.name}" class="w-16 h-16 md:w-20 md:h-20 mx-auto rounded-full border-2 border-green-500">` : 
+            `<span class="text-4xl md:text-5xl opacity-30">❓</span>`;
+        const text = animal.unlocked ? 
+            `<p class="mt-1 text-sm text-gray-700 font-semibold">${animal.name}</p>` : 
+            `<p class="mt-1 text-sm text-gray-400">Terkunci</p>`;
+        animalElement.innerHTML = `${imageHtml}${text}`;
+        animalCollectionDiv.appendChild(animalElement);
     });
-});
-
-// Sticky Header
-window.addEventListener('scroll', () => {
-    const header = document.querySelector('header');
-    header.classList.toggle('sticky', window.scrollY > 100);
-});
-
-// Contact Form Submission
-const contactForm = document.getElementById('contactForm');
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    // Get form values
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const message = document.getElementById('message').value;
-    
-    // Simple validation
-    if (!name || !email || !phone || !message) {
-        alert('Silakan lengkapi semua kolom!');
-        return;
-    }
-    
-    // In a real application, you would send this data to your server
-    // Here we'll just show a success message
-    alert(`Terima kasih ${name}! Pesan Anda telah terkirim. Kami akan menghubungi Anda segera melalui ${phone} atau ${email}.`);
-    
-    // Reset form
-    contactForm.reset();
-});
-
-// Video Play Button
-const videoPlayBtn = document.querySelector('.video-play-btn');
-videoPlayBtn.addEventListener('click', () => {
-    alert('Video "Sehari di Afia Farm" akan diputar. Dalam implementasi sebenarnya, ini akan membuka video YouTube atau pemutar video.');
-});
+}
