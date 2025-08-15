@@ -1,0 +1,26 @@
+/* style.css */
+
+/*
+  File ini berisi custom CSS untuk aplikasi Petualangan Matematika Ceria.
+  Sebagian besar styling menggunakan Tailwind CSS, namun beberapa penyesuaian
+  tambahan dilakukan di sini.
+*/
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Custom scrollbar untuk tampilan yang lebih menarik */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
