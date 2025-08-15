@@ -3,480 +3,255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Afia Farm - Peternakan Kambing Perah Berkualitas</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <title>Petualangan Matematika Ceria</title>
+    <!-- Tailwind CSS CDN untuk styling yang cepat dan responsif -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Poppins untuk tampilan yang ceria -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="header-inner">
-                <div class="logo">
-                    <i class="fas fa-paw fa-2x" style="color: var(--green-primary);"></i>
-                    <h1>AFIA <span>FARM</span></h1>
-                </div>
-                <nav>
-                    <ul id="mainMenu">
-                        <li><a href="#home">Beranda</a></li>
-                        <li><a href="#about">Tentang Kami</a></li>
-                        <li><a href="#products">Produk</a></li>
-                        <li><a href="#process">Proses</a></li>
-                        <li><a href="#why">Manfaat</a></li>
-                        <li><a href="#contact">Kontak</a></li>
-                    </ul>
-                    <button class="mobile-menu-btn" id="menuToggle">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </nav>
+<body class="bg-yellow-100 flex items-center justify-center min-h-screen p-4">
+
+    <!-- Kontainer Utama Aplikasi -->
+    <div class="bg-white rounded-3xl shadow-2xl p-6 md:p-12 w-full max-w-2xl text-center border-4 border-green-600">
+        
+        <!-- Header Aplikasi -->
+        <h1 class="text-4xl md:text-5xl font-extrabold text-green-700 mb-2">Petualangan Matematika</h1>
+        <p class="text-lg md:text-xl text-gray-600 mb-8">Bantu Momo si Kambing Cerdas selesaikan misinya!</p>
+
+        <!-- Area Game -->
+        <div class="relative bg-lime-100 rounded-2xl p-6 mb-8 border-2 border-lime-500">
+            <!-- Display Karakter -->
+            <div class="flex flex-col items-center">
+                <img id="momo-character" src="https://placehold.co/150x150/d4ed6b/588157?text=Momo" alt="Momo si Kambing Cerdas" class="w-24 h-24 md:w-32 md:h-32 mb-4 transform transition-transform duration-300">
+                <p id="question-text" class="text-3xl md:text-4xl font-bold text-gray-800 my-4"></p>
+            </div>
+
+            <!-- Input Jawaban dan Tombol -->
+            <div class="flex justify-center items-center space-x-4 mt-6">
+                <input type="number" id="answer-input" class="w-24 md:w-32 p-3 text-center rounded-xl text-xl font-bold border-2 border-gray-300 focus:outline-none focus:ring-4 focus:ring-green-400 transition-all duration-200" placeholder="?">
+                <button id="submit-btn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition-all duration-200 hover:scale-105">
+                    Cek
+                </button>
+            </div>
+
+            <!-- Area Feedback dan Info Skor -->
+            <p id="feedback-message" class="mt-4 text-xl md:text-2xl font-semibold opacity-0 transition-opacity duration-300"></p>
+            <div class="flex justify-between items-center text-sm md:text-base font-bold mt-6 text-gray-700">
+                <span>Skor: <span id="score">0</span></span>
+                <span>Level: <span id="level">1</span></span>
             </div>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Susu Kambing Murni dari Hati Peternakan</h1>
-                <p>Segar, Organik, Penuh Kebaikan Alam</p>
-                <div class="hero-btns">
-                    <a href="#products" class="btn btn-hero">Lihat Produk Kami</a>
-                    <a href="#about" class="btn btn-outline">Jelajahi Peternakan</a>
-                </div>
+        
+        <!-- Area Koleksi Hewan -->
+        <div class="bg-gray-100 rounded-2xl p-6 border-2 border-gray-300">
+            <h2 class="text-2xl font-bold text-gray-700 mb-4">Koleksi Hewan di AFIA FARM</h2>
+            <div id="animal-collection" class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-4 justify-items-center">
+                <!-- Hewan akan ditambahkan di sini oleh JavaScript -->
             </div>
+            <p id="collection-message" class="mt-4 text-green-700 font-semibold text-lg opacity-0 transition-opacity duration-300"></p>
         </div>
-    </section>
+    </div>
 
-    <!-- Highlights Section -->
-    <section class="highlights">
-        <div class="container">
-            <div class="highlights-container">
-                <div class="highlight-card">
-                    <div class="highlight-icon">
-                        <i class="fas fa-leaf"></i>
-                    </div>
-                    <h3>100% Organik Bersertifikat</h3>
-                    <p>Pakan alami tanpa bahan kimia, kambing sehat dan bahagia</p>
-                </div>
-                <div class="highlight-card">
-                    <div class="highlight-icon">
-                        <i class="fas fa-globe-asia"></i>
-                    </div>
-                    <h3>Diekspor ke 12+ Negara</h3>
-                    <p>Kualitas standar internasional dengan sertifikasi lengkap</p>
-                </div>
-                <div class="highlight-card">
-                    <div class="highlight-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3>Perawatan Penuh Kasih</h3>
-                    <p>Kambing sehat = susu berkualitas tinggi untuk keluarga Anda</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Script JavaScript untuk Logika Game -->
+    <script>
+        // Menginisialisasi variabel game
+        let score = 0;
+        let level = 1;
+        let currentProblem = {};
+        const MAX_NUMBER = 100;
+        const COLLECTION_MILESTONE = 5; // Dapatkan hewan baru setiap 5 jawaban benar
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>Tentang Afia Farm</h2>
-                <p>Peternakan keluarga dengan tradisi dan inovasi</p>
-            </div>
-            
-            <div class="about-content">
-                <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1527151977613-a34a917e5b19?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1069&q=80" alt="Pendiri Afia Farm dengan kambing">
-                </div>
-                <div class="about-text">
-                    <h2>Merawat Alam, Menghidupi Komunitas</h2>
-                    <p>Berdiri sejak 2005, <strong>Afia Farm</strong> lahir dari kecintaan Pak Yulianto pada peternakan berkelanjutan. Diawali dengan 10 ekor kambing di lahan keluarga, kini kami merawat lebih dari 300 ekor kambing perah dengan prinsip "kesejahteraan hewan pertama".</p>
-                    
-                    <div class="founder-quote">
-                        <p>"Susu terbaik datang dari kambing yang bahagia. Itulah mengapa setiap pagi kami mulai dengan senyuman dan sapaan untuk keluarga kambing kami."</p>
-                        <cite>- Yulianto, Pendiri Afia Farm</cite>
-                    </div>
-                    
-                    <p>Dengan lokasi strategis di kaki Gunung Pangrango, Jawa Barat, kami menawarkan lingkungan terbaik untuk kambing perah kami. Kombinasi udara segar, padang rumput hijau, dan perawatan penuh kasih menghasilkan susu dengan kualitas premium.</p>
-                    
-                    <ul class="features-list">
-                        <li>Lokasi strategis di kaki Gunung Pangrango, Jawa Barat</li>
-                        <li>80% Saanen + 20% Peranakan Etawa unggulan</li>
-                        <li>5 hektar padang rumput organik</li>
-                        <li>Sertifikat Organik (IFOAM), HALAL MUI, dan BPOM</li>
-                        <li>Tim ahli gizi dan dokter hewan profesional</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+        // Daftar hewan yang bisa dikoleksi
+        const animalList = [
+            { name: "Sapi", emoji: "🐄", unlocked: false },
+            { name: "Domba", emoji: "🐑", unlocked: false },
+            { name: "Ayam", emoji: "🐔", unlocked: false },
+            { name: "Bebek", emoji: "🦆", unlocked: false },
+            { name: "Kelinci", emoji: "🐇", unlocked: false },
+            { name: "Kuda", emoji: "🐎", unlocked: false },
+            { name: "Babi", emoji: "🐖", unlocked: false },
+            { name: "Kucing", emoji: "🐈", unlocked: false },
+        ];
+        let collectedAnimals = [];
+        
+        // Mengambil elemen-elemen DOM
+        const questionText = document.getElementById('question-text');
+        const answerInput = document.getElementById('answer-input');
+        const submitBtn = document.getElementById('submit-btn');
+        const feedbackMessage = document.getElementById('feedback-message');
+        const scoreElement = document.getElementById('score');
+        const levelElement = document.getElementById('level');
+        const momoCharacter = document.getElementById('momo-character');
+        const animalCollectionDiv = document.getElementById('animal-collection');
+        const collectionMessage = document.getElementById('collection-message');
 
-    <!-- Products Section -->
-    <section class="products" id="products">
-        <div class="container">
-            <div class="section-title">
-                <h2>Produk Kami</h2>
-                <p>Kebaikan alam dalam setiap tetes</p>
-            </div>
+        /**
+         * Mengatur ulang UI dan memulai masalah matematika baru.
+         */
+        function generateProblem() {
+            let operation, num1, num2, answer;
+            const operations = ['+', '-'];
             
-            <div class="products-container">
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1563461660947-507ef49e9c47?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80" alt="Susu Kambing Segar">
-                    </div>
-                    <div class="product-info">
-                        <h3>Susu Segar Afia</h3>
-                        <p>Susu kambing segar dengan rasa lembut dan tekstur creamy, dikemas dalam botol kaca untuk menjaga kesegaran.</p>
-                        
-                        <ul class="product-features">
-                            <li><i class="fas fa-check-circle"></i> Pasteurisasi suhu rendah</li>
-                            <li><i class="fas fa-check-circle"></i> Tahan 7 hari di chiller</li>
-                            <li><i class="fas fa-check-circle"></i> Kemasan botol kaca 500ml/1L</li>
-                            <li><i class="fas fa-check-circle"></i> Tanpa pengawet & perasa tambahan</li>
-                        </ul>
-                        
-                        <a href="#contact" class="btn">Pesan Sekarang</a>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt="Yoghurt Kambing">
-                    </div>
-                    <div class="product-info">
-                        <h3>Yoghurt Probiotik</h3>
-                        <p>Yoghurt dengan 6 strain bakteri baik, tekstur lembut dan rasa alami yang cocok untuk pencernaan sensitif.</p>
-                        
-                        <ul class="product-features">
-                            <li><i class="fas fa-check-circle"></i> 6 strain bakteri probiotik</li>
-                            <li><i class="fas fa-check-circle"></i> Rasa alami tanpa gula tambahan</li>
-                            <li><i class="fas fa-check-circle"></i> Kemasan 250ml</li>
-                            <li><i class="fas fa-check-circle"></i> Tinggi kalsium & protein</li>
-                        </ul>
-                        
-                        <a href="#contact" class="btn">Pesan Sekarang</a>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1611934180042-da7910594970?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt="Keju Kambing">
-                    </div>
-                    <div class="product-info">
-                        <h3>Keju Kambing Premium</h3>
-                        <p>Keju dengan tekstur lembut dan rasa khas yang kaya, dibuat melalui proses tradisional dengan sentuhan modern.</p>
-                        
-                        <ul class="product-features">
-                            <li><i class="fas fa-check-circle"></i> Proses fermentasi alami</li>
-                            <li><i class="fas fa-check-circle"></i> Kemasan vakum 200g</li>
-                            <li><i class="fas fa-check-circle"></i> Tahan hingga 3 bulan</li>
-                            <li><i class="fas fa-check-circle"></i> Tanpa pengawet kimia</li>
-                        </ul>
-                        
-                        <a href="#contact" class="btn">Pesan Sekarang</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="export-info">
-                <h3>Pemasaran Global</h3>
-                <p>Produk kami telah dinikmati di berbagai belahan dunia, dengan kualitas yang terjaga dan sertifikasi ekspor lengkap.</p>
-                
-                <div class="flags-container">
-                    <div class="flag">🇸🇬</div>
-                    <div class="flag">🇲🇾</div>
-                    <div class="flag">🇯🇵</div>
-                    <div class="flag">🇦🇪</div>
-                    <div class="flag">🇰🇷</div>
-                    <div class="flag">🇦🇺</div>
-                </div>
-                
-                <p><strong>Minimal Ekspor:</strong> 200 liter/batch<br>
-                <strong>Sertifikasi Ekspor:</strong> FSSC 22000, Health Certificate, Sertifikat HALAL</p>
-            </div>
-        </div>
-    </section>
+            // Tambahkan perkalian dan pembagian saat level mencapai 4
+            if (level >= 4) {
+                operations.push('*', '/');
+            }
 
-    <!-- Process Section -->
-    <section class="process" id="process">
-        <div class="container">
-            <div class="section-title">
-                <h2>Proses Peternakan</h2>
-                <p>Kualitas dimulai dari perawatan terbaik</p>
-            </div>
-            
-            <div class="process-container">
-                <div class="process-step">
-                    <div class="process-icon">
-                        <i class="fas fa-sun"></i>
-                    </div>
-                    <h4>05.30 Pagi</h4>
-                    <p>Pemerahan pertama di kandang steril dengan teknologi modern</p>
-                </div>
-                
-                <div class="process-step">
-                    <div class="process-icon">
-                        <i class="fas fa-temperature-low"></i>
-                    </div>
-                    <h4>Penyimpanan Dingin</h4>
-                    <p>Susu langsung didinginkan di 4°C untuk menjaga kesegaran</p>
-                </div>
-                
-                <div class="process-step">
-                    <div class="process-icon">
-                        <i class="fas fa-flask"></i>
-                    </div>
-                    <h4>Quality Check</h4>
-                    <p>Uji bakteri, lemak & pH tiap batch untuk jaminan kualitas</p>
-                </div>
-                
-                <div class="process-step">
-                    <div class="process-icon">
-                        <i class="fas fa-truck"></i>
-                    </div>
-                    <h4>Distribusi Cepat</h4>
-                    <p>Pengiriman dengan rantai dingin ke pelanggan dalam 24 jam</p>
-                </div>
-            </div>
-            
-            <div class="video-container">
-                <div class="video-play-btn">
-                    <i class="fas fa-play"></i>
-                </div>
-            </div>
-        </div>
-    </section>
+            // Pilih operasi secara acak dari array operations
+            operation = operations[Math.floor(Math.random() * operations.length)];
 
-    <!-- Why Goat Milk Section -->
-    <section class="why-goat" id="why">
-        <div class="container">
-            <div class="section-title">
-                <h2>Mengapa Susu Kambing?</h2>
-                <p>Manfaat kesehatan yang luar biasa</p>
-            </div>
-            
-            <table class="comparison-table">
-                <tr>
-                    <th>Karakteristik</th>
-                    <th>Susu Kambing</th>
-                    <th>Susu Sapi</th>
-                </tr>
-                <tr>
-                    <td>Ukuran Molekul Lemak</td>
-                    <td class="checkmark">Lebih kecil (mudah dicerna)</td>
-                    <td class="crossmark">Lebih besar</td>
-                </tr>
-                <tr>
-                    <td>Laktosa</td>
-                    <td class="checkmark">10% lebih rendah</td>
-                    <td class="crossmark">Lebih tinggi</td>
-                </tr>
-                <tr>
-                    <td>Protein A2</td>
-                    <td class="checkmark">Dominan (ramah pencernaan)</td>
-                    <td class="crossmark">Kebanyakan A1</td>
-                </tr>
-                <tr>
-                    <td>Kandungan Kalsium</td>
-                    <td class="checkmark">33% lebih tinggi</td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>Kandungan Vitamin A</td>
-                    <td class="checkmark">47% lebih tinggi</td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>Kandungan Zat Besi</td>
-                    <td class="checkmark">Lebih mudah diserap</td>
-                    <td class="crossmark">Kurang bioavailable</td>
-                </tr>
-            </table>
-            
-            <div class="testimonials">
-                <h3 style="text-align: center; margin-bottom: 40px;">Apa Kata Pelanggan Kami</h3>
-                
-                <div class="testimonial-grid">
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            <p>"Setelah beralih ke susu kambing Afia Farm, masalah pencernaan saya membaik secara signifikan. Sekarang seluruh keluarga kami mengonsumsinya setiap hari!"</p>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">
-                                    <i class="fas fa-user"></i>
-                                </div>
-                                <div class="author-info">
-                                    <h4>Budi Santoso</h4>
-                                    <p>Pelanggan setia 3 tahun</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            <p>"Pelanggan saya di Osaka sangat suka kehalusan tekstur yoghurt Afia Farm! Mereka mengatakan ini yang terbaik dari Indonesia."</p>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">
-                                    <i class="fas fa-user"></i>
-                                </div>
-                                <div class="author-info">
-                                    <h4>Tanaka-san</h4>
-                                    <p>Importir Jepang</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            <p>"Sebagai ahli gizi, saya merekomendasikan susu kambing Afia Farm karena kandungan nutrisinya yang lengkap dan proses produksi yang transparan."</p>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">
-                                    <i class="fas fa-user"></i>
-                                </div>
-                                <div class="author-info">
-                                    <h4>Dr. Maya Indah</h4>
-                                    <p>Ahli Gizi</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            if (operation === '+') {
+                num1 = Math.floor(Math.random() * (MAX_NUMBER / 2)) + 1;
+                num2 = Math.floor(Math.random() * (MAX_NUMBER / 2)) + 1;
+                answer = num1 + num2;
+            } else if (operation === '-') {
+                num1 = Math.floor(Math.random() * MAX_NUMBER) + 1;
+                num2 = Math.floor(Math.random() * num1) + 1;
+                answer = num1 - num2;
+            } else if (operation === '*') {
+                // Batasi angka untuk perkalian agar tidak terlalu sulit
+                num1 = Math.floor(Math.random() * 9) + 1;
+                num2 = Math.floor(Math.random() * 9) + 1;
+                answer = num1 * num2;
+            } else if (operation === '/') {
+                // Pastikan hasil pembagian adalah bilangan bulat
+                num2 = Math.floor(Math.random() * 9) + 2; // Mulai dari 2 agar tidak dibagi 1
+                answer = Math.floor(Math.random() * 9) + 1;
+                num1 = num2 * answer;
+            }
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Hubungi Kami</h2>
-                <p>Kami siap menjawab pertanyaan Anda</p>
-            </div>
-            
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Afia Farm Headquarters</h3>
-                    
-                    <div class="contact-detail">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h4>Alamat</h4>
-                            <p>Jl. Peternakan Sejahtera No. 88, Cisarua, Bogor, Jawa Barat</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-detail">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <h4>Jam Operasional</h4>
-                            <p>Senin - Minggu: 06.00 - 17.00 WIB</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-detail">
-                        <i class="fas fa-phone-alt"></i>
-                        <div>
-                            <h4>Telepon/WhatsApp</h4>
-                            <p>+62 812-3456-7890</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-detail">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h4>Email</h4>
-                            <p>info@afiafarm.com</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-social">
-                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Nama Lengkap</label>
-                            <input type="text" id="name" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phone">Nomor Telepon</label>
-                            <input type="tel" id="phone" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Pesan</label>
-                            <textarea id="message" class="form-control" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn">Kirim Pesan</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+            // Menyimpan masalah saat ini dan menampilkannya di UI
+            currentProblem = { num1, num2, operation, answer };
+            questionText.textContent = `Berapa ${num1} ${operation} ${num2}?`;
+            answerInput.value = '';
+            feedbackMessage.textContent = '';
+            feedbackMessage.classList.remove('opacity-100', 'text-green-500', 'text-red-500');
+            momoCharacter.style.transform = 'scale(1)';
+        }
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-col">
-                    <h4>Afia Farm</h4>
-                    <p>Peternakan kambing perah keluarga yang berkomitmen menyediakan susu kambing berkualitas tinggi dengan proses alami dan berkelanjutan.</p>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Tautan Cepat</h4>
-                    <ul class="footer-links">
-                        <li><a href="#home">Beranda</a></li>
-                        <li><a href="#about">Tentang Kami</a></li>
-                        <li><a href="#products">Produk</a></li>
-                        <li><a href="#process">Proses</a></li>
-                        <li><a href="#why">Manfaat Susu Kambing</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Produk Kami</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Susu Segar</a></li>
-                        <li><a href="#">Yoghurt Probiotik</a></li>
-                        <li><a href="#">Keju Kambing</a></li>
-                        <li><a href="#">Sabun Susu Kambing</a></li>
-                        <li><a href="#">Produk Ekspor</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Kontak</h4>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt"></i> Bogor, Jawa Barat</li>
-                        <li><i class="fas fa-phone-alt"></i> +62 812-3456-7890</li>
-                        <li><i class="fas fa-envelope"></i> info@afiafarm.com</li>
-                    </ul>
-                </div>
-            </div>
+        /**
+         * Memeriksa jawaban yang dimasukkan oleh pengguna.
+         */
+        function checkAnswer() {
+            const userAnswer = parseInt(answerInput.value, 10);
             
-            <div class="footer-bottom">
-                <p class="copyright">© 2023 Afia Farm. Hak Cipta Dilindungi. Dibangun dengan ❤️ untuk peternakan keluarga</p>
-            </div>
-        </div>
-    </footer>
+            if (isNaN(userAnswer)) {
+                showFeedback("Masukkan angka, ya!", "text-red-500");
+                return;
+            }
 
-    <script src="script.js"></script>
+            if (userAnswer === currentProblem.answer) {
+                // Jawaban benar
+                score++;
+                if (score % 5 === 0) {
+                    level++;
+                    showFeedback("🎉 Selamat! Levelmu naik!", "text-green-500");
+                    collectNewAnimal(); // Panggil fungsi untuk mengumpulkan hewan baru
+                } else {
+                    showFeedback("Jawabanmu benar! 👍", "text-green-500");
+                    momoCharacter.style.transform = 'scale(1.1) rotate(10deg)';
+                }
+                updateUI();
+                setTimeout(generateProblem, 1500);
+            } else {
+                // Jawaban salah
+                showFeedback("Oops, salah. Coba lagi! 😥", "text-red-500");
+            }
+        }
+
+        /**
+         * Mengumpulkan hewan baru dan memperbarui tampilan koleksi.
+         */
+        function collectNewAnimal() {
+            const unlockedAnimal = animalList.find(animal => !animal.unlocked);
+            if (unlockedAnimal) {
+                unlockedAnimal.unlocked = true;
+                collectedAnimals.push(unlockedAnimal);
+                updateCollectionDisplay();
+                showCollectionMessage(`Selamat! Kamu mendapatkan ${unlockedAnimal.name}!`);
+            } else {
+                showCollectionMessage("Koleksimu sudah penuh! Hebat!");
+            }
+        }
+
+        /**
+         * Memperbarui tampilan koleksi hewan.
+         */
+        function updateCollectionDisplay() {
+            animalCollectionDiv.innerHTML = ''; // Hapus tampilan lama
+            animalList.forEach(animal => {
+                const animalElement = document.createElement('div');
+                animalElement.className = 'text-center';
+                const emoji = animal.unlocked ? `<span class="text-4xl md:text-5xl">${animal.emoji}</span>` : `<span class="text-4xl md:text-5xl opacity-30">❓</span>`;
+                const text = animal.unlocked ? `<p class="mt-1 text-sm text-gray-700">${animal.name}</p>` : `<p class="mt-1 text-sm text-gray-400">Terkunci</p>`;
+                animalElement.innerHTML = `${emoji}${text}`;
+                animalCollectionDiv.appendChild(animalElement);
+            });
+        }
+
+        /**
+         * Menampilkan pesan feedback kepada pengguna.
+         * @param {string} message - Pesan yang akan ditampilkan.
+         * @param {string} colorClass - Kelas warna Tailwind CSS (misalnya 'text-green-500').
+         */
+        function showFeedback(message, colorClass) {
+            feedbackMessage.textContent = message;
+            feedbackMessage.classList.add('opacity-100', colorClass);
+        }
+
+        /**
+         * Menampilkan pesan di area koleksi.
+         * @param {string} message - Pesan yang akan ditampilkan.
+         */
+        function showCollectionMessage(message) {
+            collectionMessage.textContent = message;
+            collectionMessage.classList.add('opacity-100');
+            setTimeout(() => {
+                collectionMessage.classList.remove('opacity-100');
+            }, 3000);
+        }
+
+        /**
+         * Memperbarui tampilan skor dan level.
+         */
+        function updateUI() {
+            scoreElement.textContent = score;
+            levelElement.textContent = level;
+        }
+
+        // Menambahkan event listener ke tombol "Cek"
+        submitBtn.addEventListener('click', checkAnswer);
+
+        // Menambahkan event listener untuk tombol 'Enter' pada input
+        answerInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                checkAnswer();
+            }
+        });
+
+        // Memulai permainan saat halaman dimuat
+        generateProblem();
+        updateCollectionDisplay(); // Tampilkan koleksi kosong di awal
+    </script>
 </body>
 </html>
